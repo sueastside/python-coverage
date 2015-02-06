@@ -18,16 +18,20 @@ module.exports =
   config:
     coverageFilePath:
       type: "string"
-      default: "tests/coverage.xml"
+      default: "coverage.xml"
     coverageCommand:
       type: "string"
-      default: "nosetests -v --cover-package={{module}} --with-coverage -e ^rtest.+$ --cover-erase --cover-xml --all-modules -w tests/"
+      default: "nosetests --cover-package={{module}} --with-coverage --cover-erase --cover-xml"
+      description: "The command to run. The var {{module}} expands to the module automatically found in sourceDirectory"
     virtualEnv:
       type: "string"
       default: "../env"
     refreshOnFileChange:
       type: "boolean"
       default: true
+    sourceDirectory:
+      type: "string"
+      default: "src/"
 
   refreshOnFileChangeSubscription: null
   panelView: null
@@ -162,10 +166,13 @@ module.exports =
 
 
 detectModule = (callback) ->
-  ve = atom.config.get "python-coverage.virtualEnv"
+  ve = atom.config.get("python-coverage.virtualEnv")
+  src= atom.config.get("python-coverage.sourceDirectory")
   dir = atom.project.path
-  cmd = 'python -c "from setuptools import find_packages; print find_packages(\\"src\\")[0]"'
+  #TODO: might want to add all found packages?
+  cmd = 'python -c "from setuptools import find_packages; print find_packages(\\"'+src+'\\")[0]"'
   cmd = "exec bash -c 'cd #{dir} && source #{ve}/bin/activate && #{cmd}'"
+  console.log(cmd)
 
   child = exec(cmd);
   buffer = ''
