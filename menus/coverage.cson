@@ -1,0 +1,13 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Python-Coverage'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'python-coverage:toggle' },
+        { 'label': 'Refresh', 'command': 'python-coverage:refresh' }
+      ]
+    ]
+  }
+]

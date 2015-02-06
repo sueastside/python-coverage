@@ -1,0 +1,18 @@
+{
+  "name": "python-coverage",
+  "main": "./lib/coverage",
+  "version": "0.0.1",
+  "description": "Shows the current test coverage of your project",
+  "activationEvents": [],
+  "repository": "https://github.com/sueastside/python-coverage",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.140.0"
+  },
+  "dependencies": {
+    "fs-plus": "2.3.1",
+    "elementtree": "0.1.6",
+    "lodash": "3.1.0",
+    "event-kit": "1.0.2"
+  }
+}
